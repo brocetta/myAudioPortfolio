@@ -1,28 +1,43 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  @font-face {
-    font-family: 'Poppins';
-    font-weight: 600;
-    src: url('https://fonts.gstatic.com/s/poppins/v15/pxiEyp8kv8JHgFVrJJlZKA.ttf');
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "Poppins";
+  font-weight: 600;
+  src: url("https://fonts.gstatic.com/s/poppins/v15/pxiEyp8kv8JHgFVrJJlZKA.ttf");
+}
 
-  .hero-section {background-color: #bababa;
-                 height: 120vh;
-                 background-image: url('../media/DrumMachine.png');
-                 background-repeat: no-repeat;
-                 background-position: right;
-                 background-position-y: bottom;
-                 background-size: 65%;
-  }
 
-  h1 {color: white;
-      font-family: Poppins;
-      text-transform: uppercase;
-      font-size: 150px;
-      font-weight: bolder;
-      text-align: center;
-      padding-top: 20vh;
+
+.hero-section {
+  background-color: #bababa;
+  height: 120vh;
+  background-image: url("../media/DrumMachine.png");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-position-y: bottom;
+  background-size: 65%;
+  text-align: center;
+  padding-top: 30px;
+}
+
+h1 {
+  color: white;
+  font-family: Poppins;
+  text-transform: uppercase;
+  font-size: 150px;
+  font-weight: bolder;
+  text-align: center;
+  padding-top: 20vh;
+}
+
+.logo {
+    color: white;
+    background-color: #DF313C;
+    text-align: center;
+    display: inline-block;
+    padding: 50px;
+    border-radius: 50%;
 }
