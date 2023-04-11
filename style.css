@@ -9,6 +9,8 @@
     src: url('https://fonts.gstatic.com/s/poppins/v15/pxiEyp8kv8JHgFVrJJlZKA.ttf');
   }
 
-  h2 {color: red;}
-  h2 {font-family: Poppins;}
-  h2 {font-size: 200px;}
+  h1 {color: red;}
+  h1 {font-family: Poppins;}
+  h1 {font-size: 200px;}
+
+  heroImg {height: 100vh;}
