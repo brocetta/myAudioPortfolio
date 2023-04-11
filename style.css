@@ -9,8 +9,20 @@
     src: url('https://fonts.gstatic.com/s/poppins/v15/pxiEyp8kv8JHgFVrJJlZKA.ttf');
   }
 
-  h1 {color: red;}
-  h1 {font-family: Poppins;}
-  h1 {font-size: 200px;}
+  .hero-section {background-color: #bababa;
+                 height: 120vh;
+                 background-image: url('../media/DrumMachine.png');
+                 background-repeat: no-repeat;
+                 background-position: right;
+                 background-position-y: bottom;
+                 background-size: 65%;
+  }
 
-  heroImg {height: 100vh;}
+  h1 {color: white;
+      font-family: Poppins;
+      text-transform: uppercase;
+      font-size: 150px;
+      font-weight: bolder;
+      text-align: center;
+      padding-top: 20vh;
+}
