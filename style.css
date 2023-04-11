@@ -1,0 +1,14 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  @font-face {
+    font-family: 'Poppins';
+    font-weight: 600;
+    src: url('https://fonts.gstatic.com/s/poppins/v15/pxiEyp8kv8JHgFVrJJlZKA.ttf');
+  }
+
+  h2 {color: red;}
+  h2 {font-family: Poppins;}
+  h2 {font-size: 200px;}
