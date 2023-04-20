@@ -25,7 +25,7 @@ h1 {
   color: white;
   font-family: Poppins;
   text-transform: uppercase;
-  font-size: 150px;
+  font-size: 1000%;
   font-weight: bolder;
   text-align: center;
   padding-top: 20vh;
@@ -49,13 +49,13 @@ h1 {
 
 .games {
   width: 50%;
-  background-color: aqua;
-}
-.gamesImg {
-
 }
 
 .podcasting {
   width: 50%;
   background-color: #df313c;
+}
+
+.podcastImg {
+  margin-left: 20px;
 }
