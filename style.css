@@ -9,8 +9,6 @@
   src: url("https://fonts.gstatic.com/s/poppins/v15/pxiEyp8kv8JHgFVrJJlZKA.ttf");
 }
 
-
-
 .hero-section {
   background-color: #bababa;
   height: 120vh;
@@ -34,10 +32,31 @@ h1 {
 }
 
 .logo {
-    color: white;
-    background-color: #DF313C;
-    text-align: center;
-    display: inline-block;
-    padding: 50px;
-    border-radius: 50%;
+  color: white;
+  background-color: #df313c;
+  text-align: center;
+  display: inline-block;
+  padding: 15px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.main {
+  display: flex;
+  background-color: #bababa;
+  padding: 0px 100px 0px 100px;
+}
+
+.games {
+  width: 50%;
+  background-color: aqua;
+}
+.gamesImg {
+  
+}
+
+.podcasting {
+  padding: 100px;
+  width: 50%;
+  background-color: #df313c;
 }

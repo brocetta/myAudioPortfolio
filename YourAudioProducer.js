@@ -1,11 +1,13 @@
 const h1 = document.createElement("h1");
 const hero = document.createElement("div");
+const main = document.createElement("div");
+const games = document.createElement("div");
+const podcasting = document.createElement("div");
+
 const logo = document.createElement("div");
-const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-const svgImage = document.createElementNS(
-  "http://www.w3.org/2000/svg",
-  "image"
-);
+const logoImg = document.createElement("img");
+const gamesImg = document.createElement("img");
+const podcastImg = document.createElement("img");
 
 document.body.append(hero);
 hero.classList.add("hero-section");
@@ -16,14 +18,29 @@ hero.append(h1);
 hero.prepend(logo);
 logo.classList.add("logo");
 
-svg.setAttribute("width", "100");
-svg.setAttribute("height", "100");
-svg.style.fill = "white";
-svgImage.setAttributeNS(
-  "http://www.w3.org/1999/xlink",
-  "xlink:href",
-  "../media/logo.svg"
-);
-svg.appendChild(svgImage);
+logoImg.src = "media/Logo Img.png";
+logoImg.style.height = "80px";
+logo.append(logoImg);
 
-logo.append(svg);
+document.body.append(main);
+main.classList.add("main");
+
+main.append(games);
+games.classList.add("games");
+
+gamesImg.src = "media/knob.png";
+gamesImg.classList.add("gamesImg");
+gamesImg.style.width = "100%";
+gamesImg.style.height = "100%";
+gamesImg.style.objectFit = "cover";
+games.append(gamesImg);
+
+main.append(podcasting);
+podcasting.classList.add("podcasting");
+
+podcastImg.src = "media/Headphone Guy no bg.png";
+podcastImg.classList.add("podcastImg");
+podcastImg.style.width = "100%";
+podcastImg.style.height = "100%";
+podcastImg.style.objectFit = "cover";
+podcasting.append(podcastImg);
