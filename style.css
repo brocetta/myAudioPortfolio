@@ -8,9 +8,13 @@
   font-weight: 600;
   src: url("https://fonts.gstatic.com/s/poppins/v15/pxiEyp8kv8JHgFVrJJlZKA.ttf");
 }
-
+:root {
+  --primary-color: #bababa;
+  --secondary-color: #df313c;
+  --text-color: white;
+}
 .hero-section {
-  background-color: #bababa;
+  background-color: var(--primary-color);
   height: 120vh;
   background-image: url("../media/DrumMachine.png");
   background-repeat: no-repeat;
@@ -22,7 +26,7 @@
 }
 
 h1 {
-  color: white;
+  color: var(--text-color);
   font-family: Poppins;
   text-transform: uppercase;
   font-size: 11rem;
@@ -32,8 +36,8 @@ h1 {
 }
 
 .logo {
-  color: white;
-  background-color: #df313c;
+  color: var(--text-color);
+  background-color: var(--secondary-color);
   text-align: center;
   display: inline-block;
   padding: 15px;
@@ -43,7 +47,7 @@ h1 {
 
 .main {
   display: flex;
-  background-color: #bababa;
+  background-color: var(--primary-color);
   padding: 0px 100px 0px 100px;
 }
 
@@ -53,7 +57,7 @@ h1 {
 
 .podcasting {
   width: 50%;
-  background-color: #df313c;
+  background-color: var(--secondary-color)
 }
 
 .podcastImg {
