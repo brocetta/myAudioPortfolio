@@ -15,7 +15,7 @@
   background-image: url("../media/DrumMachine.png");
   background-repeat: no-repeat;
   background-position: right;
-  background-position-y: bottom;
+  background-position-y: center;
   background-size: 800px;
   text-align: center;
   padding-top: 30px;
@@ -63,6 +63,7 @@ h1 {
 @media only screen and (max-width: 952px) {
   h1 {
     font-size: 9rem;
+    padding-top: 15vh;
   }
 }
 
@@ -73,6 +74,7 @@ h1 {
 
   h1 {
     font-size: 7rem;
+    padding-top: 10vh;
   }
   .main {
     flex-direction: column;
