@@ -40,7 +40,7 @@ h1 {
   background-color: var(--secondary-color);
   text-align: center;
   display: inline-block;
-  padding: 15px;
+  padding: 2px;
   border-radius: 50%;
   vertical-align: middle;
 }
@@ -57,7 +57,7 @@ h1 {
 
 .podcasting {
   width: 50%;
-  background-color: var(--secondary-color)
+  background-color: var(--secondary-color);
 }
 
 .podcastImg {
