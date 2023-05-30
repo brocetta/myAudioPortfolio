@@ -1,21 +1,52 @@
+// Element fuctions for dynamic creating page elements (<div>, <h>, <img>, <video>)
+
+function heading(text, tag, where) {
+  const h1 = document.createElement(tag);
+  h1.innerHTML = text;
+  where.append(h1);
+}
+
+function image(src, classList, where) {
+  const img = document.createElement("img");
+  img.src = src;
+  img.classList.add(classList);
+  where.append(img);
+}
+
+function logo(classList, where) {
+  const div = document.createElement("div");
+  div.classList.add(classList);
+  where.append(div);
+  image("media/Logo Img.png", "logoImg", div);
+}
+
+function video(src, where, autoPlay, loop, muted) {
+  const videoFrame = document.createElement("div");
+  videoFrame.classList.add("videoFrame");
+  where.append(videoFrame);
+
+  const videoContainer = document.createElement("div");
+  videoContainer.classList.add("videoContainer");
+  videoFrame.append(videoContainer);
+
+  const video = document.createElement("video");
+  video.src = src;
+  video.classList.add("video");
+  video.autoplay = autoPlay === undefined ? true : autoPlay;
+  video.loop = loop === undefined ? true : loop;
+  video.muted = muted === undefined ? true : muted;
+  videoContainer.append(video);
+}
+
+//  PAGE SECTIONS
 // Create the hero section
 function createHeroSection() {
   const hero = document.createElement("div");
   hero.classList.add("hero-section");
 
-  const h1 = document.createElement("h1");
-  h1.innerHTML = "Your Audio Producer";
-  hero.append(h1);
+  logo("logo", hero);
+  heading("Your Audio Producer", "h1", hero);
 
-  const logo = document.createElement("div");
-  logo.classList.add("logo");
-
-  const logoImg = document.createElement("img");
-  logoImg.src = "media/Logo Img.png";
-  logoImg.classList.add("logoImg");
-  logo.append(logoImg);
-
-  hero.prepend(logo);
   document.body.append(hero);
 }
 
@@ -24,32 +55,36 @@ function createGamesSection() {
   const games = document.createElement("div");
   games.classList.add("games");
 
-  const gamesImg = document.createElement("img");
-  gamesImg.src = "media/knob.png";
-  gamesImg.classList.add("gamesImg");
-  games.append(gamesImg);
+  image("media/knob.png", "gamesImg", games);
 
   const gamesContent = document.createElement("div");
   gamesContent.classList.add("gamesContent");
   games.append(gamesContent);
 
-  // Videos in games section
-
-  const video1Frame = document.createElement("div");
-  video1Frame.classList.add("video1Frame");
-  gamesContent.append(video1Frame);
-
-  const video1Container = document.createElement("div");
-  video1Container.classList.add("video1Container");
-  video1Frame.append(video1Container)
-
-  const video1 = document.createElement("video");
-  video1.src = "media/videoMute/Retanol Estrich (b&w).mp4";
-  video1.classList.add("video1");
-  video1.autoplay = true;
-  video1.loop = true;
-  video1.muted = true;
-  video1Container.append(video1);
+  video(
+    "media/videoMute/Retanol Estrich (b&w).mp4",
+    gamesContent
+  );
+  video(
+    "media/video/Pressol Easter Animation.mp4",
+    gamesContent
+  );
+  video(
+    "media/videoMute/Machiavillain (b&w).mp4",
+    gamesContent
+    );
+  video(
+    "media/video/Game sound effects short.mp4",
+    gamesContent
+  );
+  video(
+    "media/video/Miloš B. Sound Design.mp4",
+    gamesContent
+  );
+  video(
+    "media/video/Creepy (crop).mp4",
+    gamesContent
+  );
 
   return games;
 }
@@ -59,11 +94,8 @@ function createPodcastingSection() {
   const podcasting = document.createElement("div");
   podcasting.classList.add("podcasting");
 
-  const podcastImg = document.createElement("img");
-  podcastImg.src = "media/Headphone Guy no bg.png";
-  podcastImg.classList.add("podcastImg");
+  image("media/Headphone Guy no bg.png", "podcastImg", podcasting);
 
-  podcasting.append(podcastImg);
   return podcasting;
 }
 
@@ -80,6 +112,8 @@ function createMainSection() {
 
   document.body.append(main);
 }
+
+// Calling page section functions
 
 createHeroSection();
 createMainSection();
