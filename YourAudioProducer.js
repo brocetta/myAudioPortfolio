@@ -55,36 +55,22 @@ function createGamesSection() {
   const games = document.createElement("div");
   games.classList.add("games");
 
-  image("media/knob.png", "gamesImg", games);
+  const imgFrame = document.createElement("div");
+  imgFrame.classList.add("gamesImgFrame");
+  games.append(imgFrame);
+
+  image("media/knob.png", "gamesImg", imgFrame);
 
   const gamesContent = document.createElement("div");
   gamesContent.classList.add("gamesContent");
   games.append(gamesContent);
 
-  video(
-    "media/videoMute/Retanol Estrich (b&w).mp4",
-    gamesContent
-  );
-  video(
-    "media/video/Pressol Easter Animation.mp4",
-    gamesContent
-  );
-  video(
-    "media/videoMute/Machiavillain (b&w).mp4",
-    gamesContent
-    );
-  video(
-    "media/video/Game sound effects short.mp4",
-    gamesContent
-  );
-  video(
-    "media/video/Miloš B. Sound Design.mp4",
-    gamesContent
-  );
-  video(
-    "media/video/Creepy (crop).mp4",
-    gamesContent
-  );
+  video("media/videoMute/Retanol Estrich (b&w).mp4", gamesContent);
+  video("media/video/Pressol Easter Animation.mp4", gamesContent);
+  video("media/videoMute/Machiavillain (b&w).mp4", gamesContent);
+  video("media/video/Game sound effects short.mp4", gamesContent);
+  video("media/video/Miloš B. Sound Design.mp4", gamesContent);
+  video("media/video/Creepy (crop).mp4", gamesContent);
 
   return games;
 }
@@ -104,31 +90,12 @@ function createPodcastingSection() {
   podContent.classList.add("podContent");
   podcasting.append(podContent);
 
-  video(
-    "media/videoMute/Retanol Estrich (b&w).mp4",
-    podContent
-  );
-  video(
-    "media/video/Pressol Easter Animation.mp4",
-    podContent
-  );
-  video(
-    "media/videoMute/Machiavillain (b&w).mp4",
-    podContent
-    );
-  video(
-    "media/video/Game sound effects short.mp4",
-    podContent
-  );
-  video(
-    "media/video/Miloš B. Sound Design.mp4",
-    podContent
-  );
-  video(
-    "media/video/Creepy (crop).mp4",
-    podContent
-  );
-
+  video("media/videoMute/Retanol Estrich (b&w).mp4", podContent);
+  video("media/video/Pressol Easter Animation.mp4", podContent);
+  video("media/videoMute/Machiavillain (b&w).mp4", podContent);
+  video("media/video/Game sound effects short.mp4", podContent);
+  video("media/video/Miloš B. Sound Design.mp4", podContent);
+  video("media/video/Creepy (crop).mp4", podContent);
 
   return podcasting;
 }
