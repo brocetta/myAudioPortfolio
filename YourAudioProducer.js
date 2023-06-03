@@ -1,4 +1,4 @@
-// Element fuctions for dynamic creating page elements (<div>, <h>, <img>, <video>)
+// Reusable fuctions for dynamic creating page elements (<div>, <h>, <img>, <video>)
 
 function heading(text, tag, where) {
   const h1 = document.createElement(tag);
@@ -94,7 +94,41 @@ function createPodcastingSection() {
   const podcasting = document.createElement("div");
   podcasting.classList.add("podcasting");
 
-  image("media/Headphone Guy no bg.png", "podcastImg", podcasting);
+  const imgFrame = document.createElement("div");
+  imgFrame.classList.add("podImgFrame");
+  podcasting.append(imgFrame);
+
+  image("media/Headphone Guy no bg.png", "podcastImg", imgFrame);
+
+  const podContent = document.createElement("div");
+  podContent.classList.add("podContent");
+  podcasting.append(podContent);
+
+  video(
+    "media/videoMute/Retanol Estrich (b&w).mp4",
+    podContent
+  );
+  video(
+    "media/video/Pressol Easter Animation.mp4",
+    podContent
+  );
+  video(
+    "media/videoMute/Machiavillain (b&w).mp4",
+    podContent
+    );
+  video(
+    "media/video/Game sound effects short.mp4",
+    podContent
+  );
+  video(
+    "media/video/Miloš B. Sound Design.mp4",
+    podContent
+  );
+  video(
+    "media/video/Creepy (crop).mp4",
+    podContent
+  );
+
 
   return podcasting;
 }
