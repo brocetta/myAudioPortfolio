@@ -1,4 +1,6 @@
-// Reusable fuctions for dynamic creating page elements (<div>, <h>, <img>, <video>)
+import WaveSurfer from "https://unpkg.com/wavesurfer.js@beta";
+
+// Reusable fuctions for dynamic creating page elements (<div>, <h>, <img>, <video>, audio etc)
 
 function heading(text, tag, where) {
   const h1 = document.createElement(tag);
@@ -38,6 +40,46 @@ function video(src, where, autoPlay, loop, muted) {
   videoContainer.append(video);
 }
 
+function audio(text, imgLink, audioLink, where) {
+  const waveContainer = document.createElement("div");
+  waveContainer.classList.add("waveContainer");
+  where.append(waveContainer);
+
+  const waveImg = document.createElement("div");
+  waveImg.classList.add("waveImg");
+  waveContainer.append(waveImg);
+
+  const wave = document.createElement("div");
+  wave.classList.add("wave");
+  waveContainer.append(wave);
+
+  heading(text, "h3", wave);
+  image(imgLink, "audioImg", waveImg);
+
+  const wavesurfer = WaveSurfer.create({
+    container: wave,
+    waveColor: "gray",
+    progressColor: "#df313c",
+    normalize: true,
+    url: audioLink,
+  });
+
+  wavesurfer.on("interaction", () => {
+    if (wavesurfer.isPlaying()) {
+      wavesurfer.pause();
+    } else {
+      wavesurfer.play();
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "Space") {
+      if (wavesurfer.isPlaying()) {
+        wavesurfer.pause();
+      }
+    }
+  });
+}
+
 //  PAGE SECTIONS
 // Create the hero section
 function createHeroSection() {
@@ -65,6 +107,8 @@ function createGamesSection() {
   gamesContent.classList.add("gamesContent");
   games.append(gamesContent);
 
+  heading("Sound Design Examples:", "h2", gamesContent);
+
   video("media/videoMute/Retanol Estrich (b&w).mp4", gamesContent);
   video("media/video/Pressol Easter Animation.mp4", gamesContent);
   video("media/videoMute/Machiavillain (b&w).mp4", gamesContent);
@@ -90,12 +134,32 @@ function createPodcastingSection() {
   podContent.classList.add("podContent");
   podcasting.append(podContent);
 
-  video("media/videoMute/Retanol Estrich (b&w).mp4", podContent);
-  video("media/video/Pressol Easter Animation.mp4", podContent);
-  video("media/videoMute/Machiavillain (b&w).mp4", podContent);
-  video("media/video/Game sound effects short.mp4", podContent);
-  video("media/video/Miloš B. Sound Design.mp4", podContent);
-  video("media/video/Creepy (crop).mp4", podContent);
+  heading("Podcast examples:", "h2", podContent);
+
+  audio(
+    "Bald & Blonde Podcast",
+    "media/Podcast Logos/AC.png",
+    "/media/Audio/voice.mp3",
+    podContent
+  );
+  audio(
+    "Belly of the Beast podcast",
+    "media/Podcast Logos/Shape the System.png",
+    "/media/Audio/voice.mp3",
+    podContent
+  );
+  audio(
+    "Above the Goal Podcast",
+    "media/Podcast Logos/AC.png",
+    "/media/Audio/voice.mp3",
+    podContent
+  );
+  audio(
+    "audiobook connection podcast",
+    "media/Podcast Logos/Shape the System.png",
+    "/media/Audio/voice.mp3",
+    podContent
+  );
 
   return podcasting;
 }
@@ -114,7 +178,7 @@ function createMainSection() {
   document.body.append(main);
 }
 
-// Calling page section functions
+// Calling the page section functions
 
 createHeroSection();
 createMainSection();

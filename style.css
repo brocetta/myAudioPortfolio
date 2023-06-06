@@ -17,6 +17,7 @@
   --secondary-color: #df313c;
   --third-color: #dfdfdf;
   --text-color: white;
+  --text-color2: rgb(68, 68, 68);
 }
 
 /* Hero section */
@@ -83,7 +84,6 @@
 }
 .gamesContent {
   background-color: var(--primary-color);
-  /* padding: 20px; */
   display: flex;
   flex-wrap: wrap;
 }
@@ -129,21 +129,55 @@
   background-color: var(--secondary-color);
   width: 100%;
   height: 50%;
-  /* overflow: hidden; */
 }
 
 .main .podcastImg {
   height: 100%;
-  /* object-fit: cover; */
 }
 .podcastImg {
-  transform: translateX(-24.5%);
+  transform: translateX(-26%);
 }
 .podContent {
-  background-color: var(--third-color);
-  /* padding: 20px; */
   display: flex;
   flex-wrap: wrap;
+}
+
+h2 {
+  color: var(--text-color2);
+  text-transform: uppercase;
+  display: block;
+  margin: 10px;
+}
+
+h3 {
+  color: var(--text-color2);
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  display: block;
+}
+
+.waveContainer {
+  width: 100%;
+  height: 119px;
+  overflow: hidden;
+  display: flex;
+  border-radius: 10px;
+  background-color: var(--third-color);
+  margin: 5px;
+}
+.wave {
+  width: 100%;
+  height: 60px;
+}
+.waveImg {
+  width: 20%;
+  height: 119px;
+  padding-top: 15px;
+}
+.audioImg {
+  height: 90px;
+  filter: grayscale(100%);
 }
 
 /* Media queries */
