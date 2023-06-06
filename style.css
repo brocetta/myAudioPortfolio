@@ -25,7 +25,7 @@
 .hero-section {
   background-color: var(--primary-color);
   height: 120vh;
-  background-image: url("../media/DrumMachine.png");
+  background-image: url("./media/DrumMachine.png");
   background-repeat: no-repeat;
   background-position: right;
   background-position-y: center;
