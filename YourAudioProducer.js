@@ -145,7 +145,7 @@ function createPodcastingSection() {
   audio(
     "Belly of the Beast podcast",
     "media/Podcast Logos/Shape the System.png",
-    "myAudioPortfolio/media/Audio/voice.mp3",
+    "media/Audio/HCH 15.mp3",
     podContent
   );
   audio(
@@ -157,7 +157,7 @@ function createPodcastingSection() {
   audio(
     "audiobook connection podcast",
     "media/Podcast Logos/Shape the System.png",
-    "myAudioPortfolio/media/Audio/voice.mp3",
+    "media/Audio/HCH 15.mp3",
     podContent
   );
 
