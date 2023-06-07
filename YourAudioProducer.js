@@ -139,25 +139,25 @@ function createPodcastingSection() {
   audio(
     "Bald & Blonde Podcast",
     "media/Podcast Logos/AC.png",
-    "https://brocetta.github.io/myAudioPortfolio/media/Audio/voice.mp3",
+    "media/Audio/voice.mp3",
     podContent
   );
   audio(
     "Belly of the Beast podcast",
     "media/Podcast Logos/Shape the System.png",
-    "https://brocetta.github.io/myAudioPortfolio/media/Audio/voice.mp3",
+    "media/Audio/voice.mp3",
     podContent
   );
   audio(
     "Above the Goal Podcast",
     "media/Podcast Logos/AC.png",
-    "https://brocetta.github.io/myAudioPortfolio/media/Audio/voice.mp3",
+    "media/Audio/voice.mp3",
     podContent
   );
   audio(
     "audiobook connection podcast",
     "media/Podcast Logos/Shape the System.png",
-    "https://brocetta.github.io/myAudioPortfolio/media/Audio/voice.mp3",
+    "media/Audio/voice.mp3",
     podContent
   );
 
