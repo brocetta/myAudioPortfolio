@@ -1,4 +1,3 @@
-// import WaveSurfer from "https://unpkg.com/wavesurfer.js@beta";
 import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js'
 
   const pod1 = WaveSurfer.create({
@@ -40,14 +39,6 @@ import WaveSurfer from 'https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js
       pod2.play();
     }
   });
-
-  // document.addEventListener("keydown", (event) => {
-  //   if (event.code === "Space") {
-  //     if (pod2.isPlaying()) {
-  //       pod2.pause();
-  //     }
-  //   }
-  // });
 
   const pod3 = WaveSurfer.create({
     container: "#pod3",
