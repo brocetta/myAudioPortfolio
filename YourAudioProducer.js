@@ -1,4 +1,4 @@
-import WaveSurfer from "https://unpkg.com/wavesurfer.js@beta";
+import WaveSurfer from 'wavesurfer.js'
 
 // Reusable fuctions for dynamic creating page elements (<div>, <h>, <img>, <video>, audio etc)
 
@@ -71,6 +71,7 @@ function audio(text, imgLink, audioLink, where) {
       wavesurfer.play();
     }
   });
+
   document.addEventListener("keydown", (event) => {
     if (event.code === "Space") {
       if (wavesurfer.isPlaying()) {
