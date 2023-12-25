@@ -16,6 +16,7 @@
   --primary-color: #bababa;
   --secondary-color: #df313c;
   --third-color: #dfdfdf;
+  --fourth-color: #f1f1f1;
   --text-color: white;
   --text-color2: rgb(68, 68, 68);
 }
@@ -25,7 +26,7 @@
 .hero-section {
   background-color: var(--primary-color);
   height: 120vh;
-  background-image: url("./media/DrumMachine.png");
+  background-image: url("./media/images/drumMachine.png");
   background-repeat: no-repeat;
   background-position: right;
   background-position-y: center;
@@ -93,8 +94,7 @@
 
 .videoFrame {
   width: 48%;
-  height: 0;
-  padding-bottom: 30%;
+  padding-bottom: 40%;
   position: relative;
   margin: 1%;
 }
@@ -114,7 +114,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.7);
+  transform: translate(-50%, -50%) scale(0.6);
   /* The "scale" value can be adjusted to zoom in/out */
   min-width: 100%;
   min-height: 100%;
@@ -127,6 +127,7 @@
 
 .podcasting {
   width: 50%;
+  background-color: var(--third-color);
 }
 .podImgFrame {
   background-color: var(--secondary-color);
@@ -135,12 +136,34 @@
 
 .podcastImg {
   width: 210.5%;
-  transform: translateX(-25%) translateY(1%);
+  transform: translate(-25%, 1%);
 }
 .podContent {
   display: flex;
   flex-wrap: wrap;
 }
+
+/* audiobook */
+
+.audiobooks {
+  width: 100%;
+}
+
+.audioBookImgFrame {
+  filter: brightness(58%);
+  height: 18vh;
+  overflow: hidden;
+}
+.audioBookImg {
+  width: 100%;
+}
+
+.audioBookContent {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* heading */
 
 h2 {
   color: var(--text-color2);
@@ -165,7 +188,7 @@ h3 {
   overflow: hidden;
   display: flex;
   border-radius: 10px;
-  background-color: var(--third-color);
+  background-color: var(--fourth-color);
   margin: 5px;
 }
 .wave {
@@ -190,7 +213,14 @@ h3 {
     padding-top: 15vh;
   }
   .podcastImg {
-    transform: translateX(-25%) translateY(1.4%);
+    transform: translate(-25%, 1.4%);
+  }
+  .videoFrame {
+    width: 78%;
+    /* padding-bottom: 50%; */
+  }
+  .audioBookImgFrame {
+    height: 15vh;
   }
 }
 
@@ -230,6 +260,9 @@ h3 {
   }
   .hero-section h1 {
     font-size: 6rem;
+  }
+  .audioBookImgFrame {
+    height: 10vh;
   }
 }
 
