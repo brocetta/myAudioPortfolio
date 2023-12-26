@@ -88,6 +88,7 @@
   background-color: var(--primary-color);
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 /* Videos */
@@ -161,6 +162,37 @@
 .audioBookContent {
   display: flex;
   flex-wrap: wrap;
+}
+
+/* movies */
+
+.movies {
+  width: 100%;
+  height: 50vh;
+  background-color: var(--text-color2);
+  padding: 40px;
+}
+
+.logo2 {
+  color: var(--text-color);
+  text-align: center;
+  display: inline-block;
+  padding: 10px;
+  border: 2px solid var(--fourth-color);
+  border-radius: 50%;
+}
+
+.logoImg2 {
+  height: 50px;
+}
+
+.clapper {
+  position: absolute;
+  right: 0%;
+  transform: translateY(-30%) scale(0.9);
+  max-width: 100%;
+  height: auto;
+  width: 50%;
 }
 
 /* heading */
