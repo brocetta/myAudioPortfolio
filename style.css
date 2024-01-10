@@ -89,6 +89,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 10px;
 }
 
 /* Videos */
@@ -98,6 +99,7 @@
   padding-bottom: 40%;
   position: relative;
   margin: 1%;
+  margin-bottom: 30px;
 }
 
 .videoContainer {
@@ -111,17 +113,20 @@
   display: flex;
 }
 
-.video {
+.video .video2 {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.6);
+  transform: translate(-50%, -50%) scale(0.9);
   /* The "scale" value can be adjusted to zoom in/out */
   min-width: 100%;
   min-height: 100%;
   width: auto;
   height: auto;
-  filter: grayscale(100%);
+}
+.video2 {
+  transform: scale(1);
+  /* The "scale" value can be adjusted to zoom in/out */
 }
 
 /* Podcast */
@@ -144,16 +149,76 @@
   flex-wrap: wrap;
 }
 
+/* REVIEWS */
+
+/* Slideshow container */
+.slideshow-container {
+  position: relative;
+  background: var(--third-color );
+}
+
+/* Slides */
+.mySlides {
+  display: none;
+  padding: 80px;
+  text-align: center;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -30px;
+  padding: 16px;
+  color: #888;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  position: absolute;
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+  color: white;
+}
+
+/* Add an italic font style to all quotes */
+q {
+  font-style: italic;
+  font-size: x-large;
+  color: var(--text-color2);
+}
+
+/* Add a blue color to the author */
+.author {
+  color: var(--secondary-color);
+  font-size: x-large;
+}
+
 /* audiobook */
 
 .audiobooks {
   width: 100%;
 }
 
-.audioBookImgFrame {
-  filter: brightness(58%);
-  height: 18vh;
+.audioBookImgFrame::before {
+  height: 30vh;
   overflow: hidden;
+  background-image: url("./media/images/cassette3.jpeg");
+  background-size: 100%;
+  background-position: top;
+  filter: brightness(60%);
+  z-index: -1;
 }
 .audioBookImg {
   width: 100%;
@@ -162,6 +227,7 @@
 .audioBookContent {
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 70px;
 }
 
 /* movies */
@@ -263,7 +329,7 @@ h3 {
   display: flex;
   border-radius: 10px;
   background-color: var(--fourth-color);
-  margin: 5px;
+  margin: 15px;
 }
 .wave {
   width: 100%;
@@ -292,9 +358,9 @@ h3 {
     width: 78%;
     /* padding-bottom: 50%; */
   }
-  .audioBookImgFrame {
+  /* .audioBookImgFrame {
     height: 15vh;
-  }
+  } */
 }
 
 @media only screen and (max-width: 768px) {
@@ -334,9 +400,9 @@ h3 {
   .hero-section h1 {
     font-size: 6rem;
   }
-  .audioBookImgFrame {
+  /* .audioBookImgFrame {
     height: 10vh;
-  }
+  } */
 }
 
 @media only screen and (max-width: 517px) {
