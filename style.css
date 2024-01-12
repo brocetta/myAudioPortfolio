@@ -225,7 +225,6 @@ q {
   padding: 40px;
   display: flex;
   flex-wrap: wrap;
-  /* padding-bottom: 50%; */
 }
 
 .logo2 {
@@ -250,7 +249,6 @@ q {
   width: 50%;
 }
 .moviesContainer1 {
-  /* height: 30%; */
   margin-bottom: 30%;
 }
 
@@ -353,13 +351,6 @@ h3 {
   .audioBookImgFrame {
     height: 15vh;
   }
-  .movies {
-    /* padding-bottom: 60%; */
-  }
-  .moviesContainer1 {
-    /* margin-bottom: 0px; */
-  }
-  
 }
 
 @media only screen and (max-width: 768px) {
@@ -404,7 +395,6 @@ h3 {
   }
   .movies {
     padding: 20px;
-    /* padding-bottom: 60%; */
   }
 }
 
