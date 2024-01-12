@@ -65,7 +65,7 @@
   display: flex;
   flex-wrap: wrap;
   background-color: var(--primary-color);
-  padding: 0px 100px 0px 100px;
+  padding: 0px 80px 0px 80px;
   overflow: hidden;
   width: 100%;
   height: 100%;
@@ -211,19 +211,6 @@ q {
   width: 100%;
 }
 
-.audioBookImgFrame::before {
-  height: 30vh;
-  overflow: hidden;
-  background-image: url("./media/images/cassette3.jpeg");
-  background-size: 100%;
-  background-position: top;
-  filter: brightness(60%);
-  z-index: -1;
-}
-.audioBookImg {
-  width: 100%;
-}
-
 .audioBookContent {
   display: flex;
   flex-wrap: wrap;
@@ -238,6 +225,7 @@ q {
   padding: 40px;
   display: flex;
   flex-wrap: wrap;
+  /* padding-bottom: 50%; */
 }
 
 .logo2 {
@@ -262,14 +250,15 @@ q {
   width: 50%;
 }
 .moviesContainer1 {
-  height: 30%;
+  /* height: 30%; */
+  margin-bottom: 30%;
 }
 
 .moviesContainer2 {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding-bottom: 50%;
+  justify-content: center;
 }
 
 /* footer */
@@ -351,16 +340,26 @@ h3 {
   .hero-section h1 {
     font-size: 9rem;
   }
+  .main {
+    padding: 0px 50px 0px 50px;
+  }
   .podcastImg {
     transform: translate(-25%, 1.4%);
   }
   .videoFrame {
     width: 78%;
-    /* padding-bottom: 50%; */
+    padding-bottom: 50%;
   }
-  /* .audioBookImgFrame {
+  .audioBookImgFrame {
     height: 15vh;
-  } */
+  }
+  .movies {
+    /* padding-bottom: 60%; */
+  }
+  .moviesContainer1 {
+    /* margin-bottom: 0px; */
+  }
+  
 }
 
 @media only screen and (max-width: 768px) {
@@ -371,22 +370,12 @@ h3 {
     font-size: 7rem;
     padding-top: 25vh;
   }
-  .main {
-    flex-direction: column;
-    padding: 0px 20px 0px 20px;
-  }
   .main .games,
   .main .podcasting {
     width: 100%;
   }
   .main .podcasting {
     margin-top: 30px;
-  }
-  .videoFrame {
-    width: 100%;
-  }
-  .video {
-    transform: translate(-50%, -50%) scale(1);
   }
   .podImgFrame {
     overflow: hidden;
@@ -399,10 +388,11 @@ h3 {
   }
   .hero-section h1 {
     font-size: 6rem;
+    padding-top: 10vh;
   }
-  /* .audioBookImgFrame {
-    height: 10vh;
-  } */
+  .clapper {
+    transform: translateY(-40%) scale(1);
+  }
 }
 
 @media only screen and (max-width: 517px) {
@@ -412,14 +402,36 @@ h3 {
   .hero-section h1 {
     font-size: 4rem;
   }
+  .movies {
+    padding: 20px;
+    /* padding-bottom: 60%; */
+  }
 }
 
 @media only screen and (max-width: 480px) {
   .hero-section h1 {
-    font-size: 4rem;
+    padding-top: 20vh;
+  }
+  .main {
+    padding: 0px 20px 0px 20px;
   }
   .hero-section .logo {
     font-size: 14px;
     padding: 10px;
   }
+  .hero-section .logoImg {
+    height: 50px;
+  }
+  .logoImg2 {
+    height: 30px;
+  }
+  .logoImg3 {
+    height: 50px;
+  }
 }
+
+@media only screen and (max-width: 340px) {
+  .hero-section h1 {
+    font-size: 3rem;
+  }
+} 
