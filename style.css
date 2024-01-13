@@ -191,6 +191,9 @@
   background-color: rgba(0,0,0,0.8);
   color: white;
 }
+.prev:active, .next:active {
+  background-color: var(--secondary-color);
+}
 
 /* Add an italic font style to all quotes */
 q {

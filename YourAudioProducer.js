@@ -38,32 +38,41 @@ audioPlayer("#audiobook4", "media/audio/HCH 15.mp3");
 
 // REVIEWS
 
-var slideIndex = 1;
+let slideIndex = 1;
 showSlides(slideIndex);
+
+let next = document.getElementsByClassName("next");
 
 function plusSlides(n) {
   showSlides(slideIndex += n);
 }
 
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
 function showSlides(n) {
-  var i;
-  var slides = document.getElementsByClassName("mySlides");
-  var dots = document.getElementsByClassName("dot");
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
   if (n > slides.length) {slideIndex = 1}    
   if (n < 1) {slideIndex = slides.length}
   for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";  
   }
-  for (i = 0; i < dots.length; i++) {
-      dots[i].className = dots[i].className.replace(" active", "");
-  }
   slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
 }
+
+document.addEventListener("keydown", (event)=> {
+        if (event.code === "ArrowRight") {
+          plusSlides(1)
+        }
+        if (event.code === "ArrowLeft") {
+          plusSlides(-1)
+        }
+})
+document.getElementById('nextButton').addEventListener('click', function() {
+  plusSlides(1);
+});
+document.getElementById('prevButton').addEventListener('click', function() {
+  plusSlides(-1);
+});
+
 window.onload= function () {
  setInterval(function(){ 
      plusSlides(1);
