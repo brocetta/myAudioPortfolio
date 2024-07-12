@@ -29,7 +29,7 @@
         <div>
           <h2>sound design examples:</h2>
           <div class="gamesContent">
-            <div class="videoFrame">
+            <div class="videoFrame" data-video-src="media/video/retanolEstrich.mp4">
               <div class="videoContainer">
                 <video
                 src="./media/lowResVideo/Retanol Estrich (lowRes).mp4"
@@ -40,7 +40,7 @@
                 ></video>
               </div>
             </div>
-            <div class="videoFrame">
+            <div class="videoFrame" data-video-src="media/video/pressolEaster.mp4">
               <div class="videoContainer">
                 <video
                 src="./media/lowResVideo/pressolEaster (lowRes).mp4"
@@ -51,7 +51,7 @@
                 ></video>
               </div>
             </div>
-            <div class="videoFrame">
+            <div class="videoFrame" data-video-src="media/video/machiaVillain.mp4">
               <div class="videoContainer">
                 <video
                 src="./media/lowResVideo/Machiavillain (lowRes).mp4"
@@ -62,7 +62,7 @@
                 ></video>
               </div>
             </div>
-            <div class="videoFrame">
+            <div class="videoFrame" data-video-src="media/video/gameSoundEffects.mp4">
               <div class="videoContainer">
                 <video
                 src="./media/lowResVideo/Game sound effects short (lowRes).mp4"
@@ -73,7 +73,7 @@
                 ></video>
               </div>
             </div>
-            <div class="videoFrame">
+            <div class="videoFrame" data-video-src="media/video/slotGames.mp4">
               <div class="videoContainer">
                 <video
                 src="./media/lowResVideo/slotGames (lowRes).mp4"
@@ -84,7 +84,7 @@
                 ></video>
               </div>
             </div>
-            <div class="videoFrame">
+            <div class="videoFrame" data-video-src="media/video/creepy.mp4">
               <div class="videoContainer">
                 <video
                 src="./media/lowResVideo/Creepy (lowRes).mp4"
@@ -335,17 +335,12 @@
       </div>
     </div>
 
-    <!-- EXPERIMENTING ZONE -->
-
-    <!-- Trigger buttons for small videos -->
-<button class="video-trigger" data-video-src="media/video/retanolEstrich.mp4">Video 1</button>
-<button class="video-trigger" data-video-src="media/video/pressolEaster.mp4">Video 2</button>
 
 <!-- Video Modal -->
 <div id="videoModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
-    <video id="modalVideo" controls>
+    <video id="modalVideo" controls tabindex="0">
       Your browser does not support the video tag.
     </video>
   </div>

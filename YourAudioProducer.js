@@ -44,60 +44,67 @@ showSlides(slideIndex);
 let next = document.getElementsByClassName("next");
 
 function plusSlides(n) {
-  showSlides(slideIndex += n);
+  showSlides((slideIndex += n));
 }
 
 function showSlides(n) {
   let i;
   let slides = document.getElementsByClassName("mySlides");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";  
+  if (n > slides.length) {
+    slideIndex = 1;
   }
-  slides[slideIndex-1].style.display = "block";  
+  if (n < 1) {
+    slideIndex = slides.length;
+  }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slides[slideIndex - 1].style.display = "block";
 }
 
-document.addEventListener("keydown", (event)=> {
-        if (event.code === "ArrowRight") {
-          plusSlides(1)
-        }
-        if (event.code === "ArrowLeft") {
-          plusSlides(-1)
-        }
-})
-document.getElementById('nextButton').addEventListener('click', function() {
+document.addEventListener("keydown", (event) => {
+  if (event.code === "ArrowRight") {
+    plusSlides(1);
+  }
+  if (event.code === "ArrowLeft") {
+    plusSlides(-1);
+  }
+});
+document.getElementById("nextButton").addEventListener("click", function () {
   plusSlides(1);
 });
-document.getElementById('prevButton').addEventListener('click', function() {
+document.getElementById("prevButton").addEventListener("click", function () {
   plusSlides(-1);
 });
 
-window.onload= function () {
- setInterval(function(){ 
-     plusSlides(1);
- }, 3000);
- }
+window.onload = function () {
+  setInterval(function () {
+    plusSlides(1);
+  }, 3000);
+};
 
-//  EXPERIMENTING ZONE
+// VIDEO MODAL FUNCIONALITY
 
-document.addEventListener('DOMContentLoaded', function() {
-  const modal = document.getElementById('videoModal');
-  const video = document.getElementById('modalVideo');
-  const videoTriggers = document.querySelectorAll('.video-trigger');
-  const closeModalBtn = document.querySelector('.close');
+document.addEventListener("DOMContentLoaded", function () {
+  const modal = document.getElementById("videoModal");
+  const video = document.getElementById("modalVideo");
+  const videoTriggers = document.querySelectorAll(".videoFrame");
+  const closeModalBtn = document.querySelector(".close");
+  let spaceDownTime = 0;
+  let isSpaceDown = false;
 
   let isPlaying = false;
 
   function openModal(videoSrc) {
     video.src = videoSrc;
-    modal.style.display = 'block';
+    modal.style.display = "block";
     isPlaying = true;
     video.play();
+    video.focus();
   }
 
   function closeModal() {
-    modal.style.display = 'none';
+    modal.style.display = "none";
     video.pause();
     isPlaying = false;
   }
@@ -107,17 +114,60 @@ document.addEventListener('DOMContentLoaded', function() {
       closeModal();
     }
   }
+  function handleClickOnVideoModal(event) {
+    console.log("clicked");
+    if (event.target === video) {
+      if (isPlaying) {
+        video.pause();
+      } else {
+        video.play();
+      }
+      isPlaying = !isPlaying;
+    }
+  }
 
-  videoTriggers.forEach(trigger => {
-    trigger.addEventListener('click', function (event) {
+  videoTriggers.forEach((trigger) => {
+    trigger.addEventListener("click", function (event) {
       event.preventDefault();
-      const videoSrc = this.getAttribute('data-video-src');
+      const videoSrc = this.getAttribute("data-video-src");
       openModal(videoSrc);
     });
   });
 
-  closeModalBtn.addEventListener('click', closeModal);
-  document.addEventListener('click', handleClickOutsideModal);
+  //  Functions for double speed when hold space
+
+  document.addEventListener("keydown", function (event) {
+    if (event.code === "Space" && !isSpaceDown) {
+      event.preventDefault();
+      spaceDownTime = new Date().getTime();
+      isSpaceDown = true;
+
+      setTimeout(() => {
+        if (isSpaceDown) {
+          video.playbackRate = 2.0;
+        }
+      }, 500); // Adjust the delay as needed for recognizing long press
+    }
+  });
+
+  document.addEventListener("keyup", function (event) {
+    if (event.code === "Space") {
+      const spaceUpTime = new Date().getTime();
+      isSpaceDown = false;
+      video.playbackRate = 1.0;
+
+      if (spaceUpTime - spaceDownTime < 500) {
+        // Adjust the delay to match the long press delay
+        togglePlayPause();
+      } else if (isPlaying) {
+        video.play(); // Continue playing if it was playing
+      }
+    }
+  });
+
+  closeModalBtn.addEventListener("click", closeModal);
+  document.addEventListener("click", handleClickOutsideModal);
+  video.addEventListener("click", handleClickOnVideoModal);
   // Close modal when video ends
-  video.addEventListener('ended', closeModal);
+  video.addEventListener("ended", closeModal);
 });
