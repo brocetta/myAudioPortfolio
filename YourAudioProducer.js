@@ -78,3 +78,46 @@ window.onload= function () {
      plusSlides(1);
  }, 3000);
  }
+
+//  EXPERIMENTING ZONE
+
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('videoModal');
+  const video = document.getElementById('modalVideo');
+  const videoTriggers = document.querySelectorAll('.video-trigger');
+  const closeModalBtn = document.querySelector('.close');
+
+  let isPlaying = false;
+
+  function openModal(videoSrc) {
+    video.src = videoSrc;
+    modal.style.display = 'block';
+    isPlaying = true;
+    video.play();
+  }
+
+  function closeModal() {
+    modal.style.display = 'none';
+    video.pause();
+    isPlaying = false;
+  }
+  function handleClickOutsideModal(event) {
+    event.preventDefault();
+    if (event.target === modal) {
+      closeModal();
+    }
+  }
+
+  videoTriggers.forEach(trigger => {
+    trigger.addEventListener('click', function (event) {
+      event.preventDefault();
+      const videoSrc = this.getAttribute('data-video-src');
+      openModal(videoSrc);
+    });
+  });
+
+  closeModalBtn.addEventListener('click', closeModal);
+  document.addEventListener('click', handleClickOutsideModal);
+  // Close modal when video ends
+  video.addEventListener('ended', closeModal);
+});
