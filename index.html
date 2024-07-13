@@ -5,12 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Audio Producer</title>
+
     <link rel="stylesheet" href="style.css" type="text/css" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap"
-      rel="stylesheet"
-    />
-  </head>
+    <link rel="preload" href="./media/images/drumMachine.webp" as="image">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap"></noscript>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+</head>
   <body>
     <!-- HERO SECTION ------->
     <div class="hero-section">
@@ -23,7 +25,7 @@
     <div class="main">
       <div class="games">
         <div class="gamesImgFrame">
-          <img src="./media/images/knob.png" class="gamesImg" alt="" loading="lazy"/>
+          <img src="./media/images/knob.webp" class="gamesImg" alt="" loading="lazy"/>
         </div>
         <!-- GAMES CONTENT ----->
         <div>
@@ -101,7 +103,7 @@
       <!-- PODCASTING SECTION --->
       <div class="podcasting">
         <div class="podImgFrame">
-          <img src="./media/Images/HeadphoneGuy.png" class="podcastImg" alt="" loading="lazy"/>
+          <img src="./media/Images/HeadphoneGuy.webp" class="podcastImg" alt="" loading="lazy"/>
         </div>
         <div class="podContent">
           <h2>podcast examples:</h2>
@@ -254,12 +256,11 @@
          <div class="logo2">
            <img src="./media/logo/logo.png" alt="" class="logoImg2" loading="lazy"/>
           </div>
-          <img src="./media/images/clapper.png" class="clapper" alt="" loading="lazy">
+          <img src="./media/images/clapper.webp" class="clapper" alt="" loading="lazy">
         </div>
         
-
         <div class="moviesContainer2">
-          <div class="videoFrame">
+          <div class="videoFrame" data-video-src="media/video/trailer1.mp4">
             <div class="videoContainer">
               <video
                 src="./media/lowResVideo/Ironclad (lowRes).mp4"
@@ -271,7 +272,7 @@
             </div>
           </div>
 
-          <div class="videoFrame">
+          <div class="videoFrame" data-video-src="media/video/trailer2.mp4">
             <div class="videoContainer">
               <video
                 src="./media/lowResVideo/Kad bi ovce bile roze (lowRes).mp4"
@@ -283,7 +284,7 @@
             </div>
           </div>
 
-          <div class="videoFrame">
+          <div class="videoFrame" data-video-src="media/video/trailer3.mp4">
             <div class="videoContainer">
               <video
                 src="./media/lowResVideo/Kamen u ruci (lowRes).mp4"
@@ -295,7 +296,7 @@
             </div>
           </div>
 
-          <div class="videoFrame">
+          <div class="videoFrame" data-video-src="media/video/trailer4.mp4">
             <div class="videoContainer">
               <video
                 src="./media/lowResVideo/Banditi u potrazi za mamom (lowRes).mp4"

@@ -1,5 +1,43 @@
 import WaveSurfer from "https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js";
 
+document.addEventListener('DOMContentLoaded', function() {
+  const players = [
+    {id: "#pod1", link: "media/audio/HCH 15.mp3"},
+    {id: "#pod2", link: "media/audio/voice.mp3"},
+    {id: "#pod3", link: "media/audio/HCH 15.mp3"},
+    {id: "#pod4", link: "media/audio/voice.mp3"},
+    {id: "#audiobook1", link: "media/audio/voice.mp3"},
+    {id: "#audiobook2", link: "media/audio/HCH 15.mp3"},
+    {id: "#audiobook3", link: "media/audio/voice.mp3"},
+    {id: "#audiobook4", link: "media/audio/HCH 15.mp3"}
+  ];
+
+  const observerOptions = {
+    root: null, // Use the viewport as the root
+    rootMargin: '0px',
+    threshold: 0.1 // Trigger when 10% of the element is visible
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const player = players.find(p => p.id === `#${entry.target.id}`);
+        if (player) {
+          audioPlayer(player.id, player.link);
+          observer.unobserve(entry.target); // Stop observing once initialized
+        }
+      }
+    });
+  }, observerOptions);
+
+  players.forEach(player => {
+    const element = document.querySelector(player.id);
+    if (element) {
+      observer.observe(element);
+    }
+  });
+});
+
 function audioPlayer(nameString, link) {
   const audio = WaveSurfer.create({
     container: nameString,
@@ -25,16 +63,6 @@ function audioPlayer(nameString, link) {
     }
   });
 }
-
-audioPlayer("#pod1", "media/audio/HCH 15.mp3");
-audioPlayer("#pod2", "media/audio/voice.mp3");
-audioPlayer("#pod3", "media/audio/HCH 15.mp3");
-audioPlayer("#pod4", "media/audio/voice.mp3");
-
-audioPlayer("#audiobook1", "media/audio/voice.mp3");
-audioPlayer("#audiobook2", "media/audio/HCH 15.mp3");
-audioPlayer("#audiobook3", "media/audio/voice.mp3");
-audioPlayer("#audiobook4", "media/audio/HCH 15.mp3");
 
 // REVIEWS
 
@@ -134,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  //  Functions for double speed when hold space
+  //  Functions for double speed when space is held
 
   document.addEventListener("keydown", function (event) {
     if (event.code === "Space" && !isSpaceDown) {
