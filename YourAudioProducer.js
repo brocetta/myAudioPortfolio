@@ -1,5 +1,7 @@
 import WaveSurfer from "https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js";
 
+// Function for creating audioplayers and adding funcionality to the playbuttons
+
 document.addEventListener('DOMContentLoaded', function() {
   const players = [
     {id: "#pod1", link: "media/audio/HCH 15.mp3"},
@@ -12,57 +14,55 @@ document.addEventListener('DOMContentLoaded', function() {
     {id: "#audiobook4", link: "media/audio/HCH 15.mp3"}
   ];
 
-  const observerOptions = {
-    root: null, // Use the viewport as the root
-    rootMargin: '0px',
-    threshold: 0.1 // Trigger when 10% of the element is visible
-  };
+  const waveSurferInstances = {};
 
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const player = players.find(p => p.id === `#${entry.target.id}`);
-        if (player) {
-          audioPlayer(player.id, player.link);
-          observer.unobserve(entry.target); // Stop observing once initialized
+  // Initialize WaveSurfer instances for all players
+  players.forEach(player => {
+    const waveSurfer = WaveSurfer.create({
+      container: player.id,
+      waveColor: "gray",
+      progressColor: "#df313c",
+      normalize: true,
+      url: player.link,
+    });
+    
+    document.addEventListener("keydown", event => {
+      if (event.code === "Space") {
+        if (waveSurfer.isPlaying()) {
+            waveSurfer.pause();
+            const playPods = document.querySelectorAll(".playPod");
+            playPods.forEach(pod => {
+              pod.src = "media/images/My Play Button GREY.webp";
+            });
+        }
+      }
+    })
+    waveSurferInstances[player.id.slice(1)] = waveSurfer; // Store the instance without the '#' in the key
+  });
+
+  const playBtns = document.querySelectorAll(".waveImg");
+
+  playBtns.forEach(btn => {
+    btn.addEventListener("click", event => {
+      const container = event.target.closest(".waveContainer"); // Find the closest .waveContainer
+      if (container) {
+        const podId = container.querySelector(".wave > div").id; // Get the id of the child div of .wave
+        const waveSurfer = waveSurferInstances[podId]; // Get the corresponding WaveSurfer instance
+
+        if (waveSurfer) {
+          waveSurfer.playPause();
+          // Visual feedback
+          if (waveSurfer.isPlaying()) {
+            event.target.src = "media/images/My Play Button RED.webp"; 
+          } else {
+            event.target.src = "media/images/My Play Button GREY.webp"; 
+          }
         }
       }
     });
-  }, observerOptions);
-
-  players.forEach(player => {
-    const element = document.querySelector(player.id);
-    if (element) {
-      observer.observe(element);
-    }
   });
 });
 
-function audioPlayer(nameString, link) {
-  const audio = WaveSurfer.create({
-    container: nameString,
-    waveColor: "gray",
-    progressColor: "#df313c",
-    normalize: true,
-    url: link,
-  });
-
-  audio.on("interaction", () => {
-    if (audio.isPlaying()) {
-      audio.pause();
-    } else {
-      audio.play();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    if (event.code === "Space") {
-      if (audio.isPlaying()) {
-        audio.pause();
-      }
-    }
-  });
-}
 
 // REVIEWS
 
