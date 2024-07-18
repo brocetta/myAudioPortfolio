@@ -14,6 +14,8 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
 </head>
   <body>
+    <!-- blur-container is container for all elements that will be blurred when modal is open -->
+    <div class="blur-container">
     <!-- HERO SECTION ------->
     <div class="hero-section">
       <div class="logo">
@@ -117,7 +119,12 @@
                 <div id="pod1"></div>
               </div>
             </div>
-              <h3>Bald & Blonde Podcast</h3>
+            <div class="podTitle">
+              <h3>Bald & Blonde</h3>
+              <div class="visitPod">
+                <p class="visitP">visit podcast</p>
+              </div>
+            </div>
           </div>
 
           <div class="waveContainer">
@@ -129,7 +136,12 @@
               <div id="pod2"></div>
             </div>
             </div>
-            <h3>Shape the System Podcast</h3>
+            <div class="podTitle">
+              <h3>Shape the System</h3>
+              <div class="visitPod">
+                <p class="visitP">visit podcast</p>
+              </div>
+            </div>
           </div>
 
           <div class="waveContainer">
@@ -141,7 +153,12 @@
                 <div id="pod3"></div>
               </div>
             </div>
-            <h3>Bald & Blonde Podcast</h3>
+            <div class="podTitle">
+              <h3>Bald & Blonde</h3>
+              <div class="visitPod">
+                <p class="visitP">visit podcast</p>
+              </div>
+            </div>
           </div>
 
           <div class="waveContainer">
@@ -153,8 +170,13 @@
                 <div id="pod4"></div>
               </div>
             </div>
-                <h3>Shape the System Podcast</h3>
+            <div class="podTitle">
+              <h3>Shape the System</h3>
+              <div class="visitPod">
+                <p class="visitP">visit podcast</p>
+              </div>
             </div>
+          </div>
             
           
         </div>
@@ -235,8 +257,13 @@
                   </div>
                   <h3>Shape the System Podcast</h3>
                 </div> 
+
+                <div class="full-audiobook-list">
+                  <p class="listP">full audiobook list</p>
+                </div>
         </div>
       </div>
+
       <!-- MOVIES SECTION -->
       <div class="movies">
        <div class="moviesContainer1">
@@ -247,6 +274,7 @@
         </div>
         
         <div class="moviesContainer2">
+          <h4>Production Sound Mixer and Boom Operator Examples:</h4>
           <div class="videoFrame" data-video-src="media/video/trailer1.mp4">
             <div class="videoContainer">
               <video
@@ -322,6 +350,7 @@
         <h2>Audiojungle</h2>
       </div>
     </div>
+  </div>
 
 
 <!-- Video Modal -->
@@ -333,7 +362,69 @@
     </video>
   </div>
 </div>
-    
-    <script type="module" src="YourAudioProducer.js"></script>
-  </body>
+
+
+<!-- Text Modal -->
+<div id="textModal">
+  <div class="text-modal-content">
+    <span class="txtClose">&times;</span>
+    <ol class="audiobook-list">
+      <li>Legacy Builder</li>
+      <li>The Age of Ideas</li>
+      <li>Preventive Medicine</li>
+      <li>Toxicology</li>
+      <li>Lab Medicine</li>
+      <li>NERMT Paramedic Exam</li>
+      <li>NCLEX Pharmacy</li>
+      <li>Real Estate Sales Agent</li>
+      <li>Medical Ethics</li>
+      <li>Federal Legislation</li>
+      <li>Neurology</li>
+      <li>USMLE 2</li>
+      <li>Pain Management</li>
+      <li>Copyright Law</li>
+      <li>The Don Of Desire Method</li>
+      <li>Killer Finale</li>
+      <li>Psychopathia Sexualis</li>
+      <li>Swamp Mysteries</li>
+      <li>Manual Dive and Axles Test A3</li>
+      <li>Wisdom Lunch Warrior</li>
+      <li>Sleep Medicine</li>
+      <li>Radiology</li>
+      <li>Firefighter Exam</li>
+      <li>Prep for EMR Exam</li>
+      <li>ASE4</li>
+      <li>Spokkullen (Swedish)</li>
+      <li>Improve Your Piano Playing Skills Subliminal Affirmations</li>
+      <li>EMT I</li>
+      <li>AEMT Advanced Exam</li>
+      <li>Skola för coola</li>
+      <li>Balancing The Wheel</li>
+      <li>ASE A5</li>
+      <li>Gates of Power</li>
+      <li>Scrum Master</li>
+      <li>COMAT</li>
+      <li>Nej Lägg av! En bok om mobbning (Swedish)</li>
+      <li>COMLEX</li>
+      <li>Tvång (Swedish)</li>
+      <li>Human Sexuality</li>
+      <li>Helt seriöst (Swedish)</li>
+      <li>The Critique of Judgement by Immanuel Kant</li>
+      <li>CompTIA A+</li>
+      <li>Anatomy of Anger</li>
+      <li>My Child Would Never Do That</li>
+      <li>My Life Being in Christ’s Business</li>
+      <li>Josephine</li>
+      <li>My Two Snow Angels</li>
+      <li>How to Live in Denmark</li>
+      <li>I Love My Hair</li>
+      <li>Working with Danes</li>
+      <li>NewBee: Lessons Learned while Cross-Pollinating my Life, Discovering my Passions, and Creating my Honey</li>
+      <li>How to Work in Denmark</li>
+    </ol>
+  </div>
+</div>
+
+<script type="module" src="YourAudioProducer.js"></script>
+</body>
 </html>

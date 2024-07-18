@@ -74,6 +74,7 @@
 .games {
   width: 50%;
   background-color: var(--primary-color);
+  overflow: hidden;
 }
 
 .gamesImg {
@@ -99,7 +100,7 @@
   padding-bottom: 40%;
   position: relative;
   margin: 1%;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 .videoContainer {
@@ -129,11 +130,16 @@
   /* The "scale" value can be adjusted to zoom in/out */
 }
 
+.video:hover {
+  cursor: pointer;
+}
+
 /* Podcast */
 
 .podcasting {
   width: 50%;
   background-color: var(--third-color);
+  overflow: hidden;
 }
 .podImgFrame {
   background-color: var(--secondary-color);
@@ -148,34 +154,53 @@
 .podContent {
   display: flex;
   flex-wrap: wrap;
+  padding: 5px 0px 0px 0px;
 }
 .playPod {
   width: 130px;
-  /* margin-top: 20px; */
+}
+.playPod:hover {
+  cursor: pointer;
+}
+.waveImg.clicked {
+  filter: blur(2px);
+  transform: rotate(5deg);
+}
+.podTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.visitPod {
+  background-color: #df313c;
+  padding: 7px;
+  border-radius: 50px;
+  margin: 5px;
+}
+.visitP {
+  color: white;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: bolder;
+}
+.visitPod:hover {
+  cursor: pointer;
+  background-color: var(--primary-color);
 }
 
 /* wavesurfer */
 
 .waveContainer {
   width: 100%;
-  /* height: 20%; */
-  /* overflow: hidden; */
-  /* display: flex; */
   border-radius: 10px;
   background-color: var(--fourth-color);
   margin: 15px;
 }
 .wave {
-  display:block;
+  display: block;
   width: 100%;
-  /* height: 20%; */
 }
-.waveImg {
-  /* display: flex; */
-  /* width: 150px; */
-  /* height: 20%; */
-  /* padding-top: 15px; */
-}
+
 .waveGroup {
   display: flex;
   margin-top: 30px;
@@ -193,6 +218,7 @@
 .slideshow-container {
   position: relative;
   background: var(--third-color);
+  height: 100%;
 }
 
 /* Slides */
@@ -207,7 +233,7 @@
 .next {
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: 150px;
   width: auto;
   margin-top: -30px;
   padding: 16px;
@@ -261,6 +287,68 @@ q {
   padding-bottom: 70px;
 }
 
+.full-audiobook-list {
+  background-color: #696969;
+  padding: 15px;
+  border-radius: 50px;
+  margin: 15px;
+}
+.listP {
+  color: white;
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: bolder;
+}
+.full-audiobook-list:hover {
+  cursor: pointer;
+  background-color: var(--secondary-color);
+}
+
+/* TEXT MODAL */
+
+#textModal {
+  display: none;
+  position: fixed;
+  z-index: 2;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.text-modal-content {
+  position: relative;
+  margin-top: 3%;
+  margin-left: 11%;
+  margin-right: 11%;
+  max-width: 100%;
+}
+
+.audiobook-list {
+  list-style-type: decimal;
+  padding: 20px 60px;
+  columns: 2;
+  column-gap: 40px;
+  background-color: var(--fourth-color);
+  color: var(--text-color2);
+}
+.audiobook-list:hover {
+  cursor: default;
+}
+
+.txtClose {
+  position: absolute;
+  top: -18px;
+  right: 0px;
+  font-size: 3rem;
+  color: var(--secondary-color);
+  cursor: pointer;
+  z-index: 3;
+}
+li:hover {
+  cursor: default;
+}
+
 /* movies */
 
 .movies {
@@ -292,8 +380,19 @@ q {
   height: auto;
   width: 50%;
 }
+
+h4 {
+  color: #bababa;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  display: block;
+  margin-left: 20px;
+  padding: 10px;
+}
+
 .moviesContainer1 {
   margin-bottom: 30%;
+  display: flex;
 }
 
 .moviesContainer2 {
@@ -348,21 +447,17 @@ h3 {
   text-transform: uppercase;
   padding-bottom: 10px;
   padding-left: 10px;
-  /* display: block; */
-  /* font-size: 100%; */
 }
 
+/* VIDEO */
 
-/* Styles for modal and overlay */
 .modal {
   display: none;
   position: fixed;
   z-index: 2;
-  /* left: 0px; */
   top: 0px;
   width: 100%;
   height: 100%;
-  /* overflow: auto; */
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -386,8 +481,25 @@ h3 {
   cursor: pointer;
   z-index: 3;
 }
+/* classList for bluring background behind the modal */
+.blur-background {
+  filter: blur(5px);
+}
 
 /* Media queries */
+
+@media only screen and (min-width: 1356px) {
+  h4 {
+    font-size: 2rem;
+  }
+  .slideshow-container {
+    height: auto;
+  }
+  .prev,
+  .next {
+    top: 50%;
+  }
+}
 
 @media only screen and (max-width: 952px) {
   .hero-section h1 {
@@ -426,6 +538,10 @@ h3 {
   .podImgFrame {
     overflow: hidden;
   }
+  .prev,
+  .next {
+    top: 120px;
+  }
 }
 
 @media only screen and (max-width: 606px) {
@@ -438,6 +554,10 @@ h3 {
   }
   .clapper {
     transform: translateY(-40%) scale(1);
+  }
+  .prev,
+  .next {
+    top: 130px;
   }
 }
 
@@ -473,10 +593,27 @@ h3 {
   .logoImg3 {
     height: 50px;
   }
+  h3 {
+    font-size: 15px;
+  }
+  .prev,
+  .next {
+    top: 150px;
+  }
 }
 
 @media only screen and (max-width: 340px) {
   .hero-section h1 {
     font-size: 3rem;
+  }
+  .visitP {
+    font-size: 8px;
+  }
+  h3 {
+    font-size: 12px;
+  }
+  .prev,
+  .next {
+    top: 170px;
   }
 }
