@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
     threshold: 0.1, // Trigger when 10% of the element is visible
   };
 
+  // adding observer for observing audio elements and loading files as audio elements come in the viewport
+
   const observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -314,4 +316,17 @@ document.addEventListener("DOMContentLoaded", function () {
   listBtn.addEventListener("click", openModal);
   closeBtn.addEventListener("click", closeModal);
   document.addEventListener("click", handleClickOutsideModal);
+});
+
+// Footer links
+
+document.addEventListener("DOMContentLoaded", function () {
+  const links = document.querySelectorAll(".link-anchor");
+
+  links.forEach((link) => {
+    link.addEventListener("click", function () {
+      const url = link.getAttribute("href");
+      window.open(url, "_blank");
+    });
+  });
 });
