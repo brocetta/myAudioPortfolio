@@ -1,3 +1,5 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+
 /* Global styles */
 
 * {
@@ -42,7 +44,7 @@
   font-size: 10rem;
   font-weight: bolder;
   text-align: center;
-  padding-top: 10vh;
+  /* padding-top: 1vh; */
 }
 
 .hero-section .logo {
@@ -126,7 +128,7 @@
   height: auto;
 }
 .video2 {
-  transform: scale(1);
+  transform: scale(1.4);
   /* The "scale" value can be adjusted to zoom in/out */
 }
 

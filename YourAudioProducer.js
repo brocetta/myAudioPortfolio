@@ -2,69 +2,47 @@ import WaveSurfer from "https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js
 
 // Function for creating audioplayers and adding funcionality to the playbuttons
 
-// Global varialble for storing currently playing instance of audio player used for stop playing more audio at once
+// Global varialble for storing currently playing instance of the audio player, used to stop playing many audio tracks at once
 let currentPlayingInstance = null;
 
+const players = [
+  { id: "#pod1", link: "media/audio/HCH 15.mp3" },
+  { id: "#pod2", link: "media/audio/voice.mp3" },
+  { id: "#pod3", link: "media/audio/HCH 15.mp3" },
+  { id: "#pod4", link: "media/audio/voice.mp3" },
+  { id: "#audiobook1", link: "media/audio/voice.mp3" },
+  { id: "#audiobook2", link: "media/audio/HCH 15.mp3" },
+  { id: "#audiobook3", link: "media/audio/voice.mp3" },
+  { id: "#audiobook4", link: "media/audio/HCH 15.mp3" },
+];
+
+const waveSurferInstances = {};
+
 document.addEventListener("DOMContentLoaded", function () {
-  const players = [
-    { id: "#pod1", link: "media/audio/HCH 15.mp3" },
-    { id: "#pod2", link: "media/audio/voice.mp3" },
-    { id: "#pod3", link: "media/audio/HCH 15.mp3" },
-    { id: "#pod4", link: "media/audio/voice.mp3" },
-    { id: "#audiobook1", link: "media/audio/voice.mp3" },
-    { id: "#audiobook2", link: "media/audio/HCH 15.mp3" },
-    { id: "#audiobook3", link: "media/audio/voice.mp3" },
-    { id: "#audiobook4", link: "media/audio/HCH 15.mp3" },
-  ];
+  handleAudioPlay();
+  setupObserver();
+  handleVisitPodcast();
+  handleReviews();
+  moveReviews();
+  handleVideoModal();
+  handleTextModal();
+  handleFooterButons();
+});
 
-  const waveSurferInstances = {};
+window.addEventListener("resize", moveReviews);
 
-  const observerOptions = {
-    root: null, // Use the viewport as the root
-    rootMargin: "0px",
-    threshold: 0.1, // Trigger when 10% of the element is visible
-  };
-
-  // adding observer for observing audio elements and loading files as audio elements come in the viewport
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const player = players.find((p) => p.id === `#${entry.target.id}`);
-        if (player) {
-          // Initialize WaveSurfer instance for the intersecting element
-          const waveSurfer = WaveSurfer.create({
-            container: player.id,
-            waveColor: "gray",
-            progressColor: "#df313c",
-            normalize: true,
-            url: player.link,
-          });
-          waveSurferInstances[player.id.slice(1)] = waveSurfer; // Store the instance without the '#' in the key
-          observer.unobserve(entry.target); // Stop observing once initialized
-        }
-      }
-    });
-  }, observerOptions);
-
-  // Start observing each element
-  players.forEach((player) => {
-    const element = document.querySelector(player.id);
-    if (element) {
-      observer.observe(element);
-    }
+function audioPlayer(id, link) {
+  const waveSurfer = WaveSurfer.create({
+    container: id,
+    waveColor: "gray",
+    progressColor: "#df313c",
+    normalize: true,
+    url: link,
   });
+  waveSurferInstances[id.slice(1)] = waveSurfer;
+}
 
-  document.addEventListener("keydown", (event) => {
-    if (event.code === "Space" && currentPlayingInstance) {
-      currentPlayingInstance.pause();
-      const playPods = document.querySelectorAll(".playPod");
-      playPods.forEach((pod) => {
-        pod.src = "media/images/My Play Button GREY.webp";
-      });
-    }
-  });
-
+function handleAudioPlay() {
   const playBtns = document.querySelectorAll(".waveImg");
 
   playBtns.forEach((btn) => {
@@ -74,7 +52,6 @@ document.addEventListener("DOMContentLoaded", function () {
       setTimeout(function () {
         btn.classList.remove("clicked");
       }, 100);
-
       const container = event.target.closest(".waveContainer"); // Find the closest .waveContainer
       if (container) {
         const podId = container.querySelector(".wave > div").id; // Get the id of the child div of .wave
@@ -109,11 +86,47 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
-});
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "Space" && currentPlayingInstance) {
+      currentPlayingInstance.pause();
+      const playPods = document.querySelectorAll(".playPod");
+      playPods.forEach((pod) => {
+        pod.src = "media/images/My Play Button GREY.webp";
+      });
+    }
+  });
+}
 
-// Function for iterating trough "visit podcast" buttons and its functionality
+// Setting up observer to load audio files as they come in viewport
 
-document.addEventListener("DOMContentLoaded", function () {
+function setupObserver() {
+  const observerOptions = {
+    root: null, // Use the viewport as the root
+    rootMargin: "0px",
+    threshold: 0.1, // Trigger when 10% of the element is visible
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const player = players.find((p) => p.id === `#${entry.target.id}`);
+        if (player) {
+          audioPlayer(player.id, player.link);
+          observer.unobserve(entry.target); // Stop observing once initialized
+        }
+      }
+    });
+  }, observerOptions);
+
+  players.forEach((player) => {
+    const element = document.querySelector(player.id);
+    if (element) {
+      observer.observe(element);
+    }
+  });
+}
+
+function handleVisitPodcast() {
   const links = [
     "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web",
     "https://online.mtsbanka.rs/webapp/Identity/Login#",
@@ -127,54 +140,56 @@ document.addEventListener("DOMContentLoaded", function () {
       window.open(links[index], "_blank");
     });
   });
-});
+}
 
 // REVIEWS
 
-let slideIndex = 1;
-showSlides(slideIndex);
+function handleReviews() {
+  let slideIndex = 1;
+  showSlides(slideIndex);
 
-let next = document.getElementsByClassName("next");
+  let next = document.getElementsByClassName("next");
 
-function plusSlides(n) {
-  showSlides((slideIndex += n));
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  if (n > slides.length) {
-    slideIndex = 1;
+  function plusSlides(n) {
+    showSlides((slideIndex += n));
   }
-  if (n < 1) {
-    slideIndex = slides.length;
-  }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slides[slideIndex - 1].style.display = "block";
-}
 
-document.addEventListener("keydown", (event) => {
-  if (event.code === "ArrowRight") {
+  function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    if (n > slides.length) {
+      slideIndex = 1;
+    }
+    if (n < 1) {
+      slideIndex = slides.length;
+    }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[slideIndex - 1].style.display = "block";
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "ArrowRight") {
+      plusSlides(1);
+    }
+    if (event.code === "ArrowLeft") {
+      plusSlides(-1);
+    }
+  });
+  document.getElementById("nextButton").addEventListener("click", function () {
     plusSlides(1);
-  }
-  if (event.code === "ArrowLeft") {
+  });
+  document.getElementById("prevButton").addEventListener("click", function () {
     plusSlides(-1);
-  }
-});
-document.getElementById("nextButton").addEventListener("click", function () {
-  plusSlides(1);
-});
-document.getElementById("prevButton").addEventListener("click", function () {
-  plusSlides(-1);
-});
+  });
 
-window.onload = function () {
-  setInterval(function () {
-    plusSlides(1);
-  }, 3000);
-};
+  window.onload = function () {
+    setInterval(function () {
+      plusSlides(1);
+    }, 3000);
+  };
+}
 
 // Function for moving the "reviews" element in different elements based on screen size
 
@@ -194,12 +209,9 @@ function moveReviews() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", moveReviews);
-window.addEventListener("resize", moveReviews);
-
 // VIDEO MODAL FUNCIONALITY
 
-document.addEventListener("DOMContentLoaded", function () {
+function handleVideoModal() {
   const modal = document.getElementById("videoModal");
   const video = document.getElementById("modalVideo");
   const videoTriggers = document.querySelectorAll(".videoFrame");
@@ -287,11 +299,11 @@ document.addEventListener("DOMContentLoaded", function () {
   video.addEventListener("click", handleClickOnVideoModal);
   // Close modal when video ends
   video.addEventListener("ended", closeModal);
-});
+}
 
 // TEXT MODAL FUNCTIONALITY
 
-document.addEventListener("DOMContentLoaded", function () {
+function handleTextModal() {
   const modal = document.getElementById("textModal");
   const closeBtn = document.querySelector(".txtClose");
   const blur = document.getElementsByClassName("blur-container")[0];
@@ -316,11 +328,11 @@ document.addEventListener("DOMContentLoaded", function () {
   listBtn.addEventListener("click", openModal);
   closeBtn.addEventListener("click", closeModal);
   document.addEventListener("click", handleClickOutsideModal);
-});
+}
 
 // Footer links
 
-document.addEventListener("DOMContentLoaded", function () {
+function handleFooterButons() {
   const links = document.querySelectorAll(".link-anchor");
 
   links.forEach((link) => {
@@ -329,4 +341,4 @@ document.addEventListener("DOMContentLoaded", function () {
       window.open(url, "_blank");
     });
   });
-});
+}
