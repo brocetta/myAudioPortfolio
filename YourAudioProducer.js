@@ -1,22 +1,32 @@
 import WaveSurfer from "https://unpkg.com/wavesurfer.js@7/dist/wavesurfer.esm.js";
 
-// Function for creating audioplayers and adding funcionality to the playbuttons
-
 // Global varialble for storing currently playing instance of the audio player, used to stop playing many audio tracks at once
 let currentPlayingInstance = null;
+let isAudioPlaying = null;
 
+const waveSurferInstances = {};
 const players = [
-  { id: "#pod1", link: "media/audio/HCH 15.mp3" },
-  { id: "#pod2", link: "media/audio/voice.mp3" },
-  { id: "#pod3", link: "media/audio/HCH 15.mp3" },
-  { id: "#pod4", link: "media/audio/voice.mp3" },
+  {
+    id: "#pod1",
+    link: "media/audio/HCH 15.mp3",
+    url: "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web",
+  },
+  {
+    id: "#pod2",
+    link: "media/audio/voice.mp3",
+    url: "https://online.mtsbanka.rs/webapp/Identity/Login#",
+  },
+  { id: "#pod3", link: "media/audio/HCH 15.mp3", url: "https://squoosh.app/" },
+  {
+    id: "#pod4",
+    link: "media/audio/voice.mp3",
+    url: "https://en.wikipedia.org/wiki/Standard_Generalized_Markup_Language",
+  },
   { id: "#audiobook1", link: "media/audio/voice.mp3" },
   { id: "#audiobook2", link: "media/audio/HCH 15.mp3" },
   { id: "#audiobook3", link: "media/audio/voice.mp3" },
   { id: "#audiobook4", link: "media/audio/HCH 15.mp3" },
 ];
-
-const waveSurferInstances = {};
 
 document.addEventListener("DOMContentLoaded", function () {
   handleAudioPlay();
@@ -48,56 +58,54 @@ function handleAudioPlay() {
   playBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
       btn.classList.add("clicked");
-
       setTimeout(function () {
         btn.classList.remove("clicked");
       }, 100);
+
       const container = event.target.closest(".waveContainer"); // Find the closest .waveContainer
-      if (container) {
-        const podId = container.querySelector(".wave > div").id; // Get the id of the child div of .wave
-        const waveSurfer = waveSurferInstances[podId]; // Get the corresponding WaveSurfer instance
+      if (!container) return;
 
-        if (waveSurfer) {
-          // Pause any currently playing instance before playing the new one
-          if (currentPlayingInstance && currentPlayingInstance !== waveSurfer) {
-            currentPlayingInstance.pause();
-            const playPods = document.querySelectorAll(".playPod");
-            playPods.forEach((pod) => {
-              pod.src = "media/images/My Play Button GREY.webp";
-            });
-          }
-          waveSurfer.playPause();
+      const podId = container.querySelector(".wave > div").id; // Get the id of the child div of .wave
+      const waveSurfer = waveSurferInstances[podId]; // Get the corresponding WaveSurfer instance
+      waveSurfer.playPause();
+      isAudioPlaying = waveSurfer.isPlaying();
 
-          // Visual feedback
-          if (waveSurfer.isPlaying()) {
-            event.target.src = "media/images/My Play Button RED.webp";
-            currentPlayingInstance = waveSurfer; // Update the currently playing instance
-          } else {
-            event.target.src = "media/images/My Play Button GREY.webp";
-            currentPlayingInstance = null; // Reset the currently playing instance
-          }
-
-          waveSurfer.on("finish", () => {
-            event.target.src = "media/images/My Play Button GREY.webp";
-            currentPlayingInstance = null; // Reset the currently playing instance when finished
-            waveSurfer.stop();
-          });
-        }
+      if (!waveSurfer) return;
+      // Pause any currently playing instance before playing the new one
+      if (currentPlayingInstance && currentPlayingInstance !== waveSurfer) {
+        currentPlayingInstance.pause();
+        playBtns.forEach((pod) => {
+          pod.setAttribute("aria-pressed", "false");
+        });
       }
-    });
-  });
-  document.addEventListener("keydown", (event) => {
-    if (event.code === "Space" && currentPlayingInstance) {
-      currentPlayingInstance.pause();
-      const playPods = document.querySelectorAll(".playPod");
-      playPods.forEach((pod) => {
-        pod.src = "media/images/My Play Button GREY.webp";
+
+      // Visual feedback
+      if (isAudioPlaying === true) {
+        currentPlayingInstance = waveSurfer; // Update the currently playing instance
+        btn.setAttribute("aria-pressed", "true");
+      } else {
+        currentPlayingInstance = null; // Reset the currently playing instance
+        btn.setAttribute("aria-pressed", "false");
+      }
+
+      waveSurfer.on("finish", () => {
+        currentPlayingInstance = null; // Reset the currently playing instance when finished
+        btn.setAttribute("aria-pressed", "false");
+        isAudioPlaying = waveSurfer.stop();
       });
-    }
+      btn.addEventListener("keydown", (event) => {
+        if (event.code === "ArrowRight") {
+          waveSurfer.skip(1);
+        }
+        if (event.code === "ArrowLeft") {
+          waveSurfer.skip(-1);
+        }
+      });
+    });
   });
 }
 
-// Setting up observer to load audio files as they come in viewport
+// Setting up observer to load audio files as they come in the viewport
 
 function setupObserver() {
   const observerOptions = {
@@ -127,17 +135,11 @@ function setupObserver() {
 }
 
 function handleVisitPodcast() {
-  const links = [
-    "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web",
-    "https://online.mtsbanka.rs/webapp/Identity/Login#",
-    "https://squoosh.app/",
-    "https://en.wikipedia.org/wiki/Standard_Generalized_Markup_Language",
-  ];
   const visitBtn = document.querySelectorAll(".visitPod");
 
   visitBtn.forEach((btn, index) => {
     btn.addEventListener("click", (event) => {
-      window.open(links[index], "_blank");
+      window.open(players[index].url, "_blank");
     });
   });
 }
@@ -216,7 +218,6 @@ function handleVideoModal() {
   const video = document.getElementById("modalVideo");
   const videoTriggers = document.querySelectorAll(".videoFrame");
   const closeModalBtn = document.querySelector(".close");
-  const blur = document.getElementsByClassName("blur-container")[0];
   let spaceDownTime = 0;
   let isSpaceDown = false;
 
@@ -228,7 +229,6 @@ function handleVideoModal() {
     isPlaying = true;
     video.play();
     video.focus();
-    blur.classList.add("blur-background");
     currentPlayingInstance.pause();
   }
 
@@ -236,14 +236,15 @@ function handleVideoModal() {
     modal.style.display = "none";
     video.pause();
     isPlaying = false;
-    blur.classList.remove("blur-background");
   }
+
   function handleClickOutsideModal(event) {
     event.preventDefault();
     if (event.target === modal) {
       closeModal();
     }
   }
+
   function handleClickOnVideoModal(event) {
     if (event.target === video) {
       if (isPlaying) {
@@ -267,7 +268,7 @@ function handleVideoModal() {
 
   document.addEventListener("keydown", function (event) {
     if (event.code === "Space" && !isSpaceDown) {
-      event.preventDefault();
+      // event.preventDefault();
       spaceDownTime = new Date().getTime();
       isSpaceDown = true;
 
@@ -287,10 +288,15 @@ function handleVideoModal() {
 
       if (spaceUpTime - spaceDownTime < 500) {
         // Adjust the delay to match the long press delay
-        togglePlayPause();
+        // togglePlayPause();
       } else if (isPlaying) {
         video.play(); // Continue playing if it was playing
       }
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "Escape") {
+      closeModal();
     }
   });
 
@@ -311,19 +317,24 @@ function handleTextModal() {
 
   function openModal() {
     modal.style.display = "block";
-    blur.classList.add("blur-background");
+    // blur.classList.add("blur-background");
   }
 
   function closeModal() {
     modal.style.display = "none";
-    blur.classList.remove("blur-background");
+    // blur.classList.remove("blur-background");
   }
   function handleClickOutsideModal(event) {
-    event.preventDefault();
+    // event.preventDefault();
     if (event.target === modal) {
       closeModal();
     }
   }
+  document.addEventListener("keydown", (event) => {
+    if (event.code === "Escape") {
+      closeModal();
+    }
+  });
 
   listBtn.addEventListener("click", openModal);
   closeBtn.addEventListener("click", closeModal);
