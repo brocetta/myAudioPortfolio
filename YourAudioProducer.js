@@ -16,7 +16,10 @@ const players = [
     link: "media/audio/voice.mp3",
     url: "https://online.mtsbanka.rs/webapp/Identity/Login#",
   },
-  { id: "#pod3", link: "media/audio/HCH 15.mp3", url: "https://squoosh.app/" },
+  { 
+    id: "#pod3", 
+    link: "media/audio/HCH 15.mp3", 
+    url: "https://squoosh.app/" },
   {
     id: "#pod4",
     link: "media/audio/voice.mp3",
@@ -268,7 +271,6 @@ function handleVideoModal() {
 
   document.addEventListener("keydown", function (event) {
     if (event.code === "Space" && !isSpaceDown) {
-      // event.preventDefault();
       spaceDownTime = new Date().getTime();
       isSpaceDown = true;
 
@@ -312,20 +314,16 @@ function handleVideoModal() {
 function handleTextModal() {
   const modal = document.getElementById("textModal");
   const closeBtn = document.querySelector(".txtClose");
-  const blur = document.getElementsByClassName("blur-container")[0];
   const listBtn = document.querySelector(".full-audiobook-list");
 
   function openModal() {
     modal.style.display = "block";
-    // blur.classList.add("blur-background");
   }
 
   function closeModal() {
     modal.style.display = "none";
-    // blur.classList.remove("blur-background");
   }
   function handleClickOutsideModal(event) {
-    // event.preventDefault();
     if (event.target === modal) {
       closeModal();
     }
