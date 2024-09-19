@@ -40,6 +40,13 @@ document.addEventListener("DOMContentLoaded", function () {
   handleVideoModal();
   handleTextModal();
   handleFooterButons();
+  WaveSurfer.create({
+    container: "#pod1",
+    waveColor: "gray",
+    progressColor: "#df313c",
+    normalize: true,
+    url: "media/audio/voice.mp3",
+  });
 });
 
 window.addEventListener("resize", moveReviews);
