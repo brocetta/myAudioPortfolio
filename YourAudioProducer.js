@@ -8,32 +8,39 @@ const waveSurferInstances = {};
 const players = [
   {
     id: "#pod1",
-    link: "media/audio/HCH 15.mp3",
-    url: "https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web",
+    link: "media/audio/B&B Sample.mp3",
+    url: "https://baldandblonde.live",
   },
   {
     id: "#pod2",
-    link: "media/audio/voice.mp3",
-    url: "https://online.mtsbanka.rs/webapp/Identity/Login#",
+    link: "media/audio/Looking Forward Sample.mp3",
+    url: "https://podcasts.apple.com/us/podcast/looking-forward-its-all-about-opportunities/id1520476704",
   },
-  { 
-    id: "#pod3", 
-    link: "media/audio/HCH 15.mp3", 
-    url: "https://squoosh.app/" },
+  {
+    id: "#pod3",
+    link: "media/audio/Guns for Hire Sample.mp3",
+    url: "https://www.atlanticcouncil.org/programs/middle-east-programs/perspectives-on-north-africa/guns-for-hire-podcast/",
+  },
   {
     id: "#pod4",
-    link: "media/audio/voice.mp3",
-    url: "https://en.wikipedia.org/wiki/Standard_Generalized_Markup_Language",
+    link: "media/audio/Audiobook Connection Sample.mp3",
+    url: "https://proaudiovoices.com/welcome-to-the-audiobook-connection-podcast/",
   },
-  { id: "#audiobook1", link: "media/audio/voice.mp3" },
-  { id: "#audiobook2", link: "media/audio/HCH 15.mp3" },
-  { id: "#audiobook3", link: "media/audio/voice.mp3" },
-  { id: "#audiobook4", link: "media/audio/HCH 15.mp3" },
+  { id: "#audiobook1", link: "media/audio/32 The Story of Jean LaFitte.mp3" },
+  {
+    id: "#audiobook2",
+    link: "media/audio/02 Milos Broceta Swamp Mysteries 17 Chapter 17.mp3",
+  },
+  { id: "#audiobook3", link: "media/audio/About the author.mp3" },
+  {
+    id: "#audiobook4",
+    link: "media/audio/01 Milos Broceta Intro to Toxicology.mp3",
+  },
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
   handleAudioPlay();
-  setupObserver();
+  audioWaveforms();
   handleVisitPodcast();
   handleReviews();
   moveReviews();
@@ -108,35 +115,6 @@ function handleAudioPlay() {
   });
 }
 
-// Setting up observer to load audio files as they come in the viewport
-
-function setupObserver() {
-  const observerOptions = {
-    root: null, // Use the viewport as the root
-    rootMargin: "0px",
-    threshold: 0.1, // Trigger when 10% of the element is visible
-  };
-
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const player = players.find((p) => p.id === `#${entry.target.id}`);
-        if (player) {
-          audioPlayer(player.id, player.link);
-          observer.unobserve(entry.target); // Stop observing once initialized
-        }
-      }
-    });
-  }, observerOptions);
-
-  players.forEach((player) => {
-    const element = document.querySelector(player.id);
-    if (element) {
-      observer.observe(element);
-    }
-  });
-}
-
 function handleVisitPodcast() {
   const visitBtn = document.querySelectorAll(".visitPod");
 
@@ -144,6 +122,16 @@ function handleVisitPodcast() {
     btn.addEventListener("click", (event) => {
       window.open(players[index].url, "_blank");
     });
+  });
+}
+
+// AUDIO WAVEFORMS
+
+function audioWaveforms() {
+  players.forEach((player) => {
+    const elementId = player.id;
+    const elementLink = player.link;
+    audioPlayer(elementId, elementLink);
   });
 }
 
@@ -192,7 +180,7 @@ function handleReviews() {
   window.onload = function () {
     setInterval(function () {
       plusSlides(1);
-    }, 3000);
+    }, 6000);
   };
 }
 
