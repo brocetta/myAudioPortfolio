@@ -10,31 +10,41 @@ const players = [
     id: "#pod1",
     link: "media/audio/B&B Sample.mp3",
     url: "https://baldandblonde.live",
+    peaks: "",
   },
   {
     id: "#pod2",
     link: "media/audio/Looking Forward Sample.mp3",
     url: "https://podcasts.apple.com/us/podcast/looking-forward-its-all-about-opportunities/id1520476704",
+    peaks: "",
   },
   {
     id: "#pod3",
     link: "media/audio/Guns for Hire Sample.mp3",
     url: "https://www.atlanticcouncil.org/programs/middle-east-programs/perspectives-on-north-africa/guns-for-hire-podcast/",
+    peaks: "",
   },
   {
     id: "#pod4",
     link: "media/audio/Audiobook Connection Sample.mp3",
     url: "https://proaudiovoices.com/welcome-to-the-audiobook-connection-podcast/",
+    peaks: "",
   },
-  { id: "#audiobook1", link: "media/audio/32 The Story of Jean LaFitte.mp3" },
+  {
+    id: "#audiobook1",
+    link: "media/audio/32 The Story of Jean LaFitte.mp3",
+    peaks: "",
+  },
   {
     id: "#audiobook2",
     link: "media/audio/02 Milos Broceta Swamp Mysteries 17 Chapter 17.mp3",
+    peaks: "",
   },
-  { id: "#audiobook3", link: "media/audio/About the author.mp3" },
+  { id: "#audiobook3", link: "media/audio/About the author.mp3", peaks: "" },
   {
     id: "#audiobook4",
     link: "media/audio/01 Milos Broceta Intro to Toxicology.mp3",
+    peaks: "",
   },
 ];
 
@@ -57,6 +67,7 @@ function audioPlayer(id, link) {
     waveColor: "gray",
     progressColor: "#df313c",
     normalize: true,
+    backend: "WebAudio",
     url: link,
   });
   waveSurferInstances[id.slice(1)] = waveSurfer;
@@ -103,6 +114,7 @@ function handleAudioPlay() {
         btn.setAttribute("aria-pressed", "false");
         isAudioPlaying = waveSurfer.stop();
       });
+
       btn.addEventListener("keydown", (event) => {
         if (event.code === "ArrowRight") {
           waveSurfer.skip(1);
