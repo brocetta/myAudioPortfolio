@@ -221,6 +221,31 @@
   width: 100%;
 }
 
+#pod1 {
+  background-image: url("media/images/Bald&Blonde.png");
+}
+#pod2 {
+  background-image: url("media/images/LookingForward.png");
+}
+#pod3 {
+  background-image: url("media/images/GunsForHire.png");
+}
+#pod4 {
+  background-image: url("media/images/AudiobookConnection.png");
+}
+#audiobook1 {
+  background-image: url("media/images/TheSotyOfJeanLaFitte.png");
+}
+#audiobook2 {
+  background-image: url("media/images/SwampMysteries.png");
+}
+#audiobook3 {
+  background-image: url("media/images/HowToLiveInDenmark.png");
+}
+#audiobook4 {
+  background-image: url("media/images/IntroToToxicology.png");
+}
+
 .waveGroup {
   display: flex;
   margin-top: 30px;

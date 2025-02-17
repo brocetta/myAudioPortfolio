@@ -71,7 +71,11 @@ function audioPlayer(id, link) {
     url: link,
   });
   waveSurferInstances[id.slice(1)] = waveSurfer;
+  waveSurfer.on('ready', () => {
+    document.getElementById(id.slice(1)).style.backgroundImage = "none";
+  })
 }
+
 
 function handleAudioPlay() {
   const playBtns = document.querySelectorAll(".waveImg");
