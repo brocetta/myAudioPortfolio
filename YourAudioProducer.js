@@ -1379,8 +1379,8 @@ const players = [
 ];
 
 document.addEventListener("DOMContentLoaded", function () {
-  handleAudioPlay();
   audioWaveforms();
+  handleAudioPlay();
   handleVisitPodcast();
   handleReviews();
   moveReviews();
