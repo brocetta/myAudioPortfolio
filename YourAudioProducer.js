@@ -1563,9 +1563,9 @@ function handleVideoModal() {
 
   function openModal(videoSrc) {
     video.src = videoSrc;
+    video.load();
     modal.style.display = "block";
     isPlaying = true;
-    modalVideo.load();
     video.play();
     video.focus();
     currentPlayingInstance.pause();
